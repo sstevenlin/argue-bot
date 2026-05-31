@@ -11,7 +11,7 @@ from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-load_dotenv()
+load_dotenv(override=True)
 
 from analyzer import argue_from_images, argue_from_text, result_to_dict
 from llm import get_api_key

@@ -12,7 +12,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import anthropic
 
-load_dotenv()
+load_dotenv(override=True)
 
 from analyzer import argue_from_screenshots, argue_from_text, result_to_json
 

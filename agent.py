@@ -7,7 +7,7 @@ import sys
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 from analyzer import argue_from_text
 from imessage import send_imessage
