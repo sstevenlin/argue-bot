@@ -18,7 +18,8 @@ from llm import get_api_key
 from vision import ImageInput
 
 ROOT = Path(__file__).resolve().parent
-STATIC = ROOT / "static"
+PUBLIC = ROOT / "public"
+STATIC = PUBLIC / "static"
 
 app = FastAPI(title="Argue Bot", docs_url=None, redoc_url=None)
 
@@ -60,7 +61,7 @@ async def health():
 
 @app.get("/")
 async def index() -> FileResponse:
-    return FileResponse(STATIC / "index.html")
+    return FileResponse(PUBLIC / "index.html")
 
 
 @app.post("/api/analyze")
