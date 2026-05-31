@@ -57,7 +57,7 @@ async def health():
     except EnvironmentError:
         return {
             "ok": False,
-            "error": "Anthropic API key not configured. Add ANTHROPIC_API_KEY to your .env file.",
+            "error": "Anthropic API key not configured. Set ANTHROPIC_API_KEY as an environment variable.",
         }
 
 

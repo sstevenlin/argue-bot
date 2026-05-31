@@ -10,7 +10,7 @@ import anthropic
 def get_api_key() -> str:
     key = os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("OPENAI_API_KEY", "")
     if not key or key.startswith("sk-your"):
-        raise EnvironmentError("Set ANTHROPIC_API_KEY in your .env file.")
+        raise EnvironmentError("Set ANTHROPIC_API_KEY as an environment variable.")
     return key
 
 
