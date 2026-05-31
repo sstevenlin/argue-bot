@@ -21,6 +21,8 @@ ROOT = Path(__file__).resolve().parent
 PUBLIC = ROOT / "public"
 STATIC = PUBLIC / "static"
 
+IS_VERCEL = bool(os.environ.get("VERCEL"))
+
 app = FastAPI(title="Argue Bot", docs_url=None, redoc_url=None)
 
 ALLOWED_TYPES = {
@@ -59,9 +61,11 @@ async def health():
         }
 
 
-@app.get("/")
-async def index() -> FileResponse:
-    return FileResponse(PUBLIC / "index.html")
+if not IS_VERCEL:
+
+    @app.get("/")
+    async def index() -> FileResponse:
+        return FileResponse(PUBLIC / "index.html")
 
 
 @app.post("/api/analyze")
@@ -128,7 +132,8 @@ async def analyze(
         raise HTTPException(status_code=400, detail=str(e)) from e
 
 
-app.mount("/static", StaticFiles(directory=STATIC), name="static")
+if not IS_VERCEL:
+    app.mount("/static", StaticFiles(directory=STATIC), name="static")
 
 
 def main() -> None:

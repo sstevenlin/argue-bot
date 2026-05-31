@@ -12,6 +12,7 @@
   ],
   "routes": [
     { "src": "/static/(.*)", "dest": "public/static/$1" },
-    { "src": "/(.*)", "dest": "api/index.py" }
+    { "src": "/api/(.*)", "dest": "api/index.py" },
+    { "src": "/", "dest": "public/index.html" }
   ]
 }
