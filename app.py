@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parent
 PUBLIC = ROOT / "public"
 STATIC = PUBLIC / "static"
 
-IS_VERCEL = bool(os.environ.get("VERCEL"))
+IS_SERVERLESS = bool(os.environ.get("VERCEL"))
 
 app = FastAPI(title="Argue Bot", docs_url=None, redoc_url=None)
 
@@ -61,7 +61,7 @@ async def health():
         }
 
 
-if not IS_VERCEL:
+if not IS_SERVERLESS:
 
     @app.get("/")
     async def index() -> FileResponse:
@@ -132,7 +132,7 @@ async def analyze(
         raise HTTPException(status_code=400, detail=str(e)) from e
 
 
-if not IS_VERCEL:
+if not IS_SERVERLESS:
     app.mount("/static", StaticFiles(directory=STATIC), name="static")
 
 
@@ -140,7 +140,7 @@ def main() -> None:
     import uvicorn
 
     port = int(os.environ.get("PORT", "8080"))
-    uvicorn.run("app:app", host="127.0.0.1", port=port, reload=True)
+    uvicorn.run("app:app", host="0.0.0.0", port=port, reload=True)
 
 
 if __name__ == "__main__":
