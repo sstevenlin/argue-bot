@@ -27,7 +27,21 @@ def _parse_json(raw: str) -> dict:
     if raw.startswith("```"):
         raw = re.sub(r"^```(?:json)?\s*", "", raw)
         raw = re.sub(r"\s*```$", "", raw)
-    return json.loads(raw)
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        match = re.search(r"\{", raw)
+        if match:
+            candidate = raw[match.start():]
+            brace_count = 0
+            for i, ch in enumerate(candidate):
+                if ch == "{":
+                    brace_count += 1
+                elif ch == "}":
+                    brace_count -= 1
+                    if brace_count == 0:
+                        return json.loads(candidate[: i + 1])
+        raise
 
 
 def analyze_conversation(
