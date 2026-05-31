@@ -13,11 +13,11 @@ from analyzer import argue_from_text
 from imessage import send_imessage
 
 LABELS = {
-    1: "soft setup",
-    2: "calm redirect",
-    3: "controlled strike",
-    4: "psych pressure",
-    5: "checkmate",
+    1: "subtle",
+    2: "deniable",
+    3: "surgical",
+    4: "ruthless",
+    5: "nuclear",
 }
 
 

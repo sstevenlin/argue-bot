@@ -1,9 +1,9 @@
 const LEVEL_LABELS = {
-  1: "Soft setup",
-  2: "Calm redirect",
-  3: "Controlled strike",
-  4: "Psych pressure",
-  5: "Checkmate",
+  1: "Subtle",
+  2: "Deniable",
+  3: "Surgical",
+  4: "Ruthless",
+  5: "Nuclear",
 };
 
 const IMAGE_EXTENSIONS = new Set(["png", "jpg", "jpeg", "webp", "heic", "gif"]);

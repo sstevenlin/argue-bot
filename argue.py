@@ -37,11 +37,11 @@ def _print_result(result, *, pick: int | None) -> None:
 
     print("\n--- responses ---")
     labels = {
-        1: "soft setup",
-        2: "calm redirect",
-        3: "controlled strike",
-        4: "psych pressure",
-        5: "checkmate",
+        1: "subtle",
+        2: "deniable",
+        3: "surgical",
+        4: "ruthless",
+        5: "nuclear",
     }
     for level in range(1, 6):
         marker = " ← recommended" if level == result.recommended_level else ""
