@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Argue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="bg-glow bg-glow--1"></div>
+  <div class="bg-glow bg-glow--2"></div>
+
+  <div class="page">
+    <header class="header">
+      <div class="logo">argue</div>
+      <p class="tagline">Drop your screenshots. Get five replies that actually sound like you.</p>
+    </header>
+
+    <main>
+      <section class="upload-section" id="upload-section">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="file-input" accept="image/*" multiple hidden>
+          <div class="dropzone__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="3"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+          <p class="dropzone__title">Drop iMessage screenshots</p>
+          <p class="dropzone__hint">or click to browse · PNG, JPG, HEIC</p>
+        </div>
+
+        <div class="previews hidden" id="previews"></div>
+
+        <div class="divider">
+          <span>or paste transcript</span>
+        </div>
+
+        <textarea
+          id="transcript"
+          class="transcript"
+          placeholder="me: hey can we talk about this&#10;them: you always do this..."
+          rows="4"
+        ></textarea>
+
+        <button class="btn btn--primary" id="analyze-btn" disabled>
+          Analyze
+        </button>
+      </section>
+
+      <section class="loading hidden" id="loading">
+        <div class="loading__spinner"></div>
+        <p class="loading__text" id="loading-text">Reading screenshots...</p>
+        <div class="loading__steps">
+          <div class="step active" data-step="read">Read</div>
+          <div class="step" data-step="analyze">Analyze</div>
+          <div class="step" data-step="generate">Generate</div>
+        </div>
+      </section>
+
+      <section class="results hidden" id="results">
+        <div class="results__header">
+          <h2>Analysis</h2>
+          <button class="btn btn--ghost" id="reset-btn">New conversation</button>
+        </div>
+
+        <div class="analysis-grid">
+          <article class="card card--situation">
+            <h3>Situation</h3>
+            <p id="situation"></p>
+          </article>
+          <article class="card card--breakdown">
+            <h3>Breakdown</h3>
+            <p id="breakdown"></p>
+          </article>
+          <article class="card card--approach">
+            <h3>Best approach</h3>
+            <p id="approach"></p>
+          </article>
+        </div>
+
+        <details class="transcript-details">
+          <summary>Extracted conversation</summary>
+          <pre id="conversation"></pre>
+        </details>
+
+        <div class="responses-header">
+          <h2>Responses</h2>
+          <div class="scale-legend">
+            <span class="scale-legend__low">1 · setup</span>
+            <div class="scale-bar"></div>
+            <span class="scale-legend__high">5 · checkmate</span>
+          </div>
+        </div>
+
+        <div class="responses" id="responses"></div>
+      </section>
+
+      <div class="error-banner hidden" id="error-banner">
+        <p id="error-text"></p>
+      </div>
+
+      <div class="toast" id="toast">Copied</div>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

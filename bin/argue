@@ -1,0 +1,4 @@
+#!/bin/bash
+# Quick launcher for Argue Bot from anywhere.
+# Add to ~/.zshrc: alias argue='/Users/steven/argue bot/argue.sh'
+exec "/Users/steven/argue bot/argue.sh" "$@"
