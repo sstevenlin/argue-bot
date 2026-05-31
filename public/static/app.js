@@ -20,6 +20,7 @@ const loading = $("#loading");
 const loadingText = $("#loading-text");
 const results = $("#results");
 const resetBtn = $("#reset-btn");
+const recipientInput = $("#recipient");
 const toast = $("#toast");
 const errorBanner = $("#error-banner");
 const errorText = $("#error-text");
@@ -236,6 +237,11 @@ function renderResults(data) {
     card.className = `response${isRec ? " recommended" : ""}`;
     card.style.animationDelay = `${level * 0.06}s`;
 
+    const recipient = recipientInput.value.trim();
+    const smsHref = recipient
+      ? `sms:${encodeURIComponent(recipient)}&body=${encodeURIComponent(text)}`
+      : null;
+
     card.innerHTML = `
       <div class="response__level response__level--${level}">${level}</div>
       <div class="response__body">
@@ -245,7 +251,10 @@ function renderResults(data) {
         </div>
         <p class="response__text"></p>
       </div>
-      <button class="response__copy">Copy</button>
+      <div class="response__actions">
+        <button class="response__copy">Copy</button>
+        ${smsHref ? `<a class="response__send" href="${smsHref}">Send in Messages</a>` : ""}
+      </div>
     `;
 
     card.querySelector(".response__text").textContent = text;
